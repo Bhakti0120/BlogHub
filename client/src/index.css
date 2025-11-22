@@ -1,8 +1,8 @@
-/* Tailwind v4 imports */
-@import "tailwindcss";
+/* 
 @import "tailwindcss/preflight";
+@import "tailwindcss";
 
-/* Light & Dark design tokens (v4 format) */
+
 @theme {
   --color-background: 0 0% 100%;
   --color-foreground: 222.2 84% 4.9%;
@@ -29,13 +29,11 @@
   --color-input: 220 13% 91%;
   --color-ring: 263.4 70% 50.4%;
 
-  /* Border radius tokens */
   --radius-base: 0.25rem;
   --radius-md: calc(0.25rem + 0.1875rem);
   --radius-lg: calc(0.3125rem + 0.1875rem);
 }
 
-/* Dark Mode Tokens */
 @custom-variant dark (&:is(.dark *));
 .dark {
   --color-background: 222.2 84% 4.9%;
@@ -64,9 +62,21 @@
   --color-ring: 263.4 70% 50.4%;
 }
 
-/* Apply border & ring globally without errors */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+}  */
+@import "tailwindcss";
+
+/* Light & Dark design tokens */
+@theme {
+  --color-background: 0 0% 100%;
+  --color-foreground: 222.2 84% 4.9%;
+
+  --color-primary: 270 70% 50%;
+  --color-primary-foreground: 210 20% 98%;
+
+  --color-border: 220 13% 91%;
+  --color-ring: 263.4 70% 50.4%;
 }

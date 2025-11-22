@@ -15,14 +15,14 @@ const Appsidebar = () => {
     <Sidebar>
       <SidebarHeader />
       <SidebarContent>
-              <SidebarGroup />
-              <SidebarMenu>
-                  <SidebarMenuItem>
-                      <SidebarMenuButton>
-                          <Link to="">Home</Link>
-                      </SidebarMenuButton>
-                  </SidebarMenuItem>
-              </SidebarMenu>
+        <SidebarGroup />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton>
+              <Link to="">Home</Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter />
