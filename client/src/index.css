@@ -67,6 +67,7 @@
     @apply border-border outline-ring/50;
   }
 }  */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "tailwindcss";
 
 /* Light & Dark design tokens */
@@ -79,4 +80,8 @@
 
   --color-border: 220 13% 91%;
   --color-ring: 263.4 70% 50.4%;
+}
+
+body{
+  font-family: "Nunito", sans-serif;
 }
