@@ -81,12 +81,20 @@ const SignIn = () => {
               />
             </div>
             <div>
-              <Button type="submit" className="w-full bg-purple-600">
+              <Button
+                type="submit"
+                className="w-full bg-purple-600 text-white hover:bg-purple-500 hover:text-black"
+              >
                 Sign In
               </Button>
               <div className="mt-5 text-sm flex justify-center items-center gap-2">
                 <p>Don&apos;t have an account?</p>
-                <Link className="text-blue-500 hover:underline" to={RouteSignUp}>Sign Up</Link>
+                <Link
+                  className="text-blue-500 hover:underline"
+                  to={RouteSignUp}
+                >
+                  Sign Up
+                </Link>
               </div>
             </div>
           </form>

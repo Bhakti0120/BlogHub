@@ -16,7 +16,10 @@ const Topbar = () => {
         <SearchBox />
       </div>
       <div>
-        <Button asChild className="bg-purple-600 rounded-full text-white">
+        <Button
+          asChild
+          className="bg-purple-600 rounded-full text-white hover:bg-purple-500 hover:text-black"
+        >
           <Link to={RouteSignIn}>
             <IoLogInOutline />
             Sign IN

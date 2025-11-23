@@ -13,7 +13,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Card } from "@/components/ui/card";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RouteSignIn } from "@/helpers/RouteName";
 
 const SignUp = () => {
@@ -23,7 +23,10 @@ const SignUp = () => {
     password: z.string().min(8, "Password must be at least 8 characters long"),
     confirmpassword: z
       .string()
-      .refine(data=> data.password === data.confirmPassword, "Passwords do not match"),
+      .refine(
+        (data) => data.password === data.confirmPassword,
+        "Passwords do not match"
+      ),
   });
 
   const form = useForm({
@@ -126,7 +129,10 @@ const SignUp = () => {
             </div>
 
             <div>
-              <Button type="submit" className="w-full bg-purple-600">
+              <Button
+                type="submit"
+                className="w-full bg-purple-600 text-white hover:bg-purple-500 hover:text-black"
+              >
                 Sign Up
               </Button>
               <div className="mt-5 text-sm flex justify-center items-center gap-2">
