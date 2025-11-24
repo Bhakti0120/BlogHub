@@ -13,22 +13,30 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 import { RouteSignIn } from "@/helpers/RouteName";
+import { getEnv } from "@/helpers/getEnv";
+import { showToast } from "@/helpers/showToast";
 
 const SignUp = () => {
-  const formSchema = z.object({
-    name: z.string().min(3, "Name must be at least 3 characters long"),
-    email: z.email(),
-    password: z.string().min(8, "Password must be at least 8 characters long"),
-    confirmpassword: z
-      .string()
-      .refine(
-        (data) => data.password === data.confirmPassword,
-        "Passwords do not match"
-      ),
-  });
 
+  const navigate = useNavigate();
+
+  //zod schema for form validation
+  const formSchema = z
+    .object({
+      name: z.string().min(3, "Name must be at least 3 characters long"),
+      email: z.email("Invalid email"),
+      password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long"),
+      confirmpassword: z.string().min(8),
+    })
+    .refine((data) => data.password === data.confirmpassword, {
+      message: "Passwords do not match",
+      path: ["confirmpassword"],
+    });
+  //useForm() hook from react-hook-form to connect the form with the validation schema
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,9 +46,28 @@ const SignUp = () => {
       confirmpassword: "",
     },
   });
+  //function to handle form submission
+  async function onSubmit(values) {
+    try {
+      const response = await fetch(
+        `${getEnv("VITE_API_BASE_URL")}/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
 
-  function onSubmit() {
-    console.log(values);
+      const data=await response.json();
+      if (!response.ok) { 
+        showToast("error", data.message);
+      }
+    navigate(RouteSignIn);
+    } catch (error) {
+      showToast('error',error.message);
+   }
   }
 
   return (

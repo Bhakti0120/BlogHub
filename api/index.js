@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+import AuthRoute from "./routes/Auth.route.js";
 dotenv.config();
 
 const PORT = process.env.PORT;
@@ -17,6 +18,9 @@ app.use(
   })
 );
 
+//route setup
+app.use("/api/auth", AuthRoute);
+
 mongoose
   .connect(process.env.MONGODB_CONN, { dbName: "BlogHubDB" })
   .then(() => {
@@ -28,4 +32,14 @@ mongoose
 
 app.listen(PORT, () => {
   console.log("Server is running on port:", PORT);
+});
+//Error Middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error.";
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,  
+  });
 });
